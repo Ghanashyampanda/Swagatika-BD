@@ -225,7 +225,7 @@ PointerParticles.register();
 //```````````````````````````````````````````````````````````````````````````````````````
 (opts = {
   // change the text in here //
-  strings: ["HAPPY", "BIRTHDAY!", "to You","Swagatika"],
+  strings: ["Many Many", "Happy Returns!", "Of The Day","Swagatika"],
   charSize: 30,
   charSpacing: 35,
   lineHeight: 40,
