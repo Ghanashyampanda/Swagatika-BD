@@ -86,17 +86,23 @@ pointer-particles {
   width: 400%;
   height: 100%;
   animation: carousel 20s infinite;
+  will-change: transform;
+  transform: translateX(0);
 }
 
 .carousel-slide {
   width: 25%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .birthday-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .carousel-dots {
@@ -310,6 +316,17 @@ body {
   .photo-carousel {
     height: 120px;
   }
+  
+  .carousel-slide {
+    width: 25%;
+    height: 100%;
+  }
+  
+  .birthday-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -331,6 +348,17 @@ body {
   
   .photo-carousel {
     height: 100px;
+  }
+  
+  .carousel-slide {
+    width: 25%;
+    height: 100%;
+  }
+  
+  .birthday-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -357,6 +385,17 @@ body {
   .photo-carousel {
     height: 80px;
   }
+  
+  .carousel-slide {
+    width: 25%;
+    height: 100%;
+  }
+  
+  .birthday-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 /* High-resolution displays */
@@ -382,12 +421,28 @@ body {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
+  .carousel-container {
+    animation: none; /* Disable automatic animation on touch devices */
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
   .dot {
     width: 12px;
     height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.3s ease;
   }
   
-  .message-box {
-    padding: 20px 25px;
+  .dot.active {
+    background: white;
   }
 }
