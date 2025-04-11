@@ -37,6 +37,35 @@ var canvas = document.getElementById( 'canvas' ),
 canvas.width = cw;
 canvas.height = ch;
 
+// Responsive canvas setup
+function resizeCanvas() {
+  cw = window.innerWidth;
+  ch = window.innerHeight;
+  canvas.width = cw;
+  canvas.height = ch;
+  
+  // Adjust firework parameters based on screen size
+  if (cw < 768) {
+    // Mobile adjustments
+    limiterTotal = 3;
+    timerTotal = 100;
+  } else {
+    // Desktop settings
+    limiterTotal = 5;
+    timerTotal = 80;
+  }
+}
+
+// Handle window resize
+window.addEventListener('resize', function() {
+  resizeCanvas();
+});
+
+// Handle orientation change
+window.addEventListener('orientationchange', function() {
+  setTimeout(resizeCanvas, 100);
+});
+
 // now we are going to setup our function placeholders for the entire demo
 
 // get a random number within a range
@@ -189,6 +218,12 @@ Particle.prototype.draw = function() {
 function createParticles( x, y ) {
 	// increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
 	var particleCount = 30;
+	
+	// Adjust particle count based on screen size for better performance
+	if (cw < 768) {
+		particleCount = 20;
+	}
+	
 	while( particleCount-- ) {
 		particles.push( new Particle( x, y ) );
 	}
@@ -271,5 +306,27 @@ canvas.addEventListener( 'mouseup', function( e ) {
 	mousedown = false;
 });
 
+// Touch events for mobile devices
+canvas.addEventListener('touchstart', function(e) {
+  e.preventDefault();
+  mousedown = true;
+  mx = e.touches[0].pageX - canvas.offsetLeft;
+  my = e.touches[0].pageY - canvas.offsetTop;
+});
+
+canvas.addEventListener('touchmove', function(e) {
+  e.preventDefault();
+  mx = e.touches[0].pageX - canvas.offsetLeft;
+  my = e.touches[0].pageY - canvas.offsetTop;
+});
+
+canvas.addEventListener('touchend', function(e) {
+  e.preventDefault();
+  mousedown = false;
+});
+
 // once the window loads, we are ready for some fireworks!
-window.onload = loop;
+window.onload = function() {
+  resizeCanvas();
+  loop();
+};

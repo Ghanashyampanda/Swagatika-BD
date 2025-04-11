@@ -358,3 +358,36 @@ body {
     height: 80px;
   }
 }
+
+/* High-resolution displays */
+@media screen and (min-width: 1200px) {
+  .video-container {
+    width: 400px;
+    height: 250px;
+  }
+  
+  .message-box {
+    max-width: 350px;
+    padding: 25px 35px;
+  }
+  
+  .message-box h2 {
+    font-size: 20px;
+  }
+  
+  .photo-carousel {
+    height: 180px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .dot {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .message-box {
+    padding: 20px 25px;
+  }
+}
