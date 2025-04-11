@@ -6,6 +6,44 @@ let w = (c.width = window.innerWidth),
   hw = w / 2,
   hh = h / 2;
 
+// Responsive canvas setup
+function resizeCanvas() {
+  w = c.width = window.innerWidth;
+  h = c.height = window.innerHeight;
+  hw = w / 2;
+  hh = h / 2;
+  
+  // Adjust animation parameters based on screen size
+  if (w < 768) {
+    // Mobile adjustments
+    opts.charSize = 24;
+    opts.charSpacing = 28;
+    opts.lineHeight = 32;
+    opts.fireworkCircleBaseSize = 15;
+    opts.fireworkCircleAddedSize = 8;
+    opts.balloonBaseSize = 15;
+    opts.balloonAddedSize = 15;
+  } else {
+    // Desktop settings
+    opts.charSize = 30;
+    opts.charSpacing = 35;
+    opts.lineHeight = 40;
+    opts.fireworkCircleBaseSize = 20;
+    opts.fireworkCircleAddedSize = 10;
+    opts.balloonBaseSize = 20;
+    opts.balloonAddedSize = 20;
+  }
+  
+  // Update font size
+  ctx.font = opts.charSize + "px Verdana";
+  
+  // Recalculate total width
+  calc.totalWidth = opts.charSpacing * Math.max(opts.strings[0].length, opts.strings[1].length);
+  
+  // Redistribute flowers
+  distributeFlowers();
+}
+
 class PointerParticle {
   constructor(spread, speed, component) {
     const { ctx, pointer, hue } = component;
@@ -644,13 +682,13 @@ for (let i = 0; i < opts.strings.length; ++i) {
 
 anim();
 
+// Handle window resize
 window.addEventListener("resize", function () {
-  w = c.width = window.innerWidth;
-  h = c.height = window.innerHeight;
+  resizeCanvas();
+});
 
-  hw = w / 2;
-  hh = h / 2;
-
-  ctx.font = opts.charSize + "px Verdana";
+// Handle orientation change
+window.addEventListener("orientationchange", function() {
+  setTimeout(resizeCanvas, 100);
 });
 

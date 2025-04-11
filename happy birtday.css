@@ -274,3 +274,87 @@ body {
   height: 100%;
   width: 100%;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .video-container {
+    width: 90%;
+    height: 180px;
+    top: 20px;
+  }
+  
+  .message-box {
+    max-width: 90%;
+    padding: 15px 20px;
+  }
+  
+  .message-box-left {
+    top: 220px;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+  }
+  
+  .message-box-right {
+    top: auto;
+    bottom: 20px;
+    right: 5%;
+    left: 5%;
+    width: 90%;
+  }
+  
+  .message-box h2 {
+    font-size: 16px;
+  }
+  
+  .photo-carousel {
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .video-container {
+    height: 150px;
+  }
+  
+  .message-box {
+    padding: 12px 15px;
+  }
+  
+  .message-box-left {
+    top: 190px;
+  }
+  
+  .message-box h2 {
+    font-size: 14px;
+  }
+  
+  .photo-carousel {
+    height: 100px;
+  }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .video-container {
+    width: 40%;
+    height: 80%;
+    top: 10%;
+  }
+  
+  .message-box-left {
+    top: 10%;
+    left: 45%;
+    width: 45%;
+  }
+  
+  .message-box-right {
+    top: 60%;
+    left: 45%;
+    width: 45%;
+  }
+  
+  .photo-carousel {
+    height: 80px;
+  }
+}
